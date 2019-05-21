@@ -1,0 +1,47 @@
+
+<div class="row">  
+     <div class="col-12">                
+          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search movie here" [(ngModel)]="searchTerm">
+      </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col" *ngFor="let movie of movies | movieFilter:searchTerm">
+      <img src="{{movie.image}}" width="200px" alt="movie picture" data-toggle="modal" 
+      data-target="#myModal"      
+      (click)="onSelect(movie)">
+      <p></p>
+    </div>
+</div>
+<br/>
+
+<hr/>
+
+<!-- modal template -->
+
+<div class="container">  
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">     
+  
+        <div class="modal-header">
+          <h4 class="modal-title">Movie Detial</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>        
+  
+        <div class="modal-body">
+
+          <!-- binded movie detail component-->          
+          <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
+        </div>        
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+  
+</div> 

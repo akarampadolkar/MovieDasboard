@@ -1,5 +1,5 @@
 import { PipeTransform ,Pipe} from '@angular/core';
-import { Movie } from './movie';
+//import { Movie } from './movie';
 
 
 @Pipe({
@@ -7,12 +7,12 @@ import { Movie } from './movie';
 })
 
 export class MovieFilterPipe implements PipeTransform{
-     transform(movies:Movie[], searchTerm: String): Movie[]{
+     transform(movies:any, searchTerm: String): any{
          if(!movies || !searchTerm){
              return movies;
          }
 
          return movies.filter(movies =>
-         movies.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+         movies.original_title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
      }
 }

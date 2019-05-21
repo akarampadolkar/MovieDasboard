@@ -14,19 +14,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     //service call for getting all movies
-    this.getHeroes();
+  //  this.getMovies();
+    this.getMoviesList();
   }
 
-  movies: Movie[];
+  imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
+  //movies: Movie[];
+  moviesList : any;
 
-  getHeroes(): void {
+ /* getMovies(): void {
      this.movieServiceService.getMovies()
     .subscribe(movies => this.movies = movies);    
+  }*/
+
+  getMoviesList():void{
+    this.movieServiceService.getMoviesList()
+    .subscribe((item) => this.moviesList = item.results);        
   }
 
   //showing selected movie
-  selectedMovie: Movie;
-  onSelect(movie: Movie): void {    
+  selectedMovie: any;
+  onSelect(movie: any): void {    
     this.selectedMovie = movie;
   }
 

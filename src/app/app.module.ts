@@ -10,13 +10,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule }    from '@angular/common/http';
 import { MovieFilterPipe } from './movie-filter.pipe';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { TvshowsComponent } from './tvshows/tvshows.component';
+import { PeopleComponent } from './people/people.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     MovieFilterPipe,
-    MovieDetailComponent
+    MovieDetailComponent,
+    TvshowsComponent,
+    PeopleComponent
   ],
   imports: [
     BrowserModule,

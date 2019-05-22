@@ -12,6 +12,6 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
   @Input() movie: Movie;  
 }

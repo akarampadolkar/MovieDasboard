@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col" *ngFor="let movie of moviesList | movieFilter:searchTerm">
-      <img src="{{imageBaseURl }}{{movie.poster_path}}" width="200px" alt="movie picture" data-toggle="modal" 
+      <img src="{{imageBaseURl }}{{movie.poster_path}}" width="250px" alt="movie picture" data-toggle="modal" 
       data-target="#myModal"      
       (click)="onSelect(movie)">
       <p></p>
@@ -24,7 +24,7 @@
 
 <div class="container">  
   <div class="modal" id="myModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">     
   
         <div class="modal-header">

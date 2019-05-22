@@ -1,0 +1,15 @@
+
+<div class="row">
+    <div class="col" *ngFor="let tvshow of tvshowlist">      
+       <div *ngIf="tvshow.poster_path">
+          <img src="{{imageBaseURl}}{{tvshow.poster_path}}" width="250px" height="350px" alt="tv poster">
+        </div>
+        <div *ngIf="tvshow.poster_path == null">
+          <img src="../../assets/img/download.png" width="250px" height="350px" alt="tv poster">
+        </div>
+      <p></p>
+    </div>
+</div>
+<br/>
+
+<hr/>

@@ -1,7 +1,21 @@
-<div *ngIf="movie">  
-  <h6> Name : {{movie.original_title}}</h6>  
-  <p> <b>Overview</b> : {{movie.overview}}</p>
-  <p> <b>Realse Date</b> : {{movie.release_date}}</p> 
-  <p> <b>Rating</b> : {{movie.vote_average}} / 10</p>
-  <p> <b>Language</b> : {{movie.original_language}}</p>  
-</div>
+<div *ngIf="movie">
+  <div class="row">
+    <div class="col-4">
+      <img src="{{imageBaseURl}}{{movie.poster_path}}" width="200px" alt="movie picture">
+    </div>
+    <div class="col-8">
+      <h3> {{movie.original_title}}</h3>  
+
+      <p> 
+        <span class="icon-circle"><i class="fa fa-list"></i></span>
+        <span class="icon-circle"><i class="fa fa-heart"></i></span>
+        <span class="icon-circle"><i class="fa fa-star"></i></span>
+      </p>
+
+        <p> <b>Overview</b> : {{movie.overview}}</p>
+        <p> <b>Realse Date</b> : {{movie.release_date}}</p> 
+        <p> <b>Rating</b> : {{movie.vote_average}} / 10</p>
+        <p> <b>Language</b> : {{movie.original_language}}</p>
+    </div>
+  </div>      
+</div>  

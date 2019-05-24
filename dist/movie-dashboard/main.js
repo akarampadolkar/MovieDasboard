@@ -149,6 +149,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_ui_loader__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-ui-loader */ "./node_modules/ngx-ui-loader/fesm5/ngx-ui-loader.js");
 /* harmony import */ var ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-bootstrap/typeahead */ "./node_modules/ngx-bootstrap/typeahead/fesm5/ngx-bootstrap-typeahead.js");
 /* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ngx-bootstrap/pagination */ "./node_modules/ngx-bootstrap/pagination/fesm5/ngx-bootstrap-pagination.js");
+
 
 
 
@@ -187,7 +189,7 @@ var AppModule = /** @class */ (function () {
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
                 ngx_ui_loader__WEBPACK_IMPORTED_MODULE_14__["NgxUiLoaderModule"],
-                ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_15__["TypeaheadModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_16__["ModalModule"].forRoot()
+                ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_15__["TypeaheadModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_16__["ModalModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_17__["PaginationModule"].forRoot()
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -498,7 +500,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let people of peopleList\">      \n      <div class=\"card\">\n        <div *ngIf=\"people.profile_path\">\n          <img src=\"{{imageBaseURl}}{{people.profile_path}}\" width=\"300px\" height=\"350px\" alt=\"profile\">\n        </div>\n        <div *ngIf=\"people.profile_path == null\">\n          <img src=\"../../assets/img/download.png\" width=\"300px\" height=\"350px\" alt=\"profile\">\n        </div>\n        \n        <p><b>{{people.name}}</b></p> \n\n     <!--   <p *ngFor=\"let known of people.known_for\">\n            <span>{{known.original_tile}}</span>\n        </p>-->\n\n      </div>\n      <br/>\n    </div>\n</div>\n<br/>\n\n<hr/>\n<nav aria-label=\"Page navigation example\">\n  <ul class=\"pagination\">    \n    <li class=\"page-item\"><a class=\"page-link\" (click)=\"getPeopleList(1)\">1</a></li>\n    <li class=\"page-item\"><a class=\"page-link\"  (click)=\"getPeopleList(2)\">2</a></li>\n    <li class=\"page-item\"><a class=\"page-link\" (click)=\"getPeopleList(3)\">3</a></li>\n    <li class=\"page-item\"><a class=\"page-link\" (click)=\"getPeopleList(4)\">4</a></li>\n    <li class=\"page-item\"><a class=\"page-link\" (click)=\"getPeopleList(5)\">5</a></li>    \n  </ul>\n</nav>"
+module.exports = "\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let people of peopleList\">      \n      <div class=\"card\">\n        <div *ngIf=\"people.profile_path\">\n          <img src=\"{{imageBaseURl}}{{people.profile_path}}\" width=\"300px\" height=\"350px\" alt=\"profile\">\n        </div>\n        <div *ngIf=\"people.profile_path == null\">\n          <img src=\"../../assets/img/download.png\" width=\"300px\" height=\"350px\" alt=\"profile\">\n        </div>\n        \n        <p><b>{{people.name}}</b></p> \n\n     <!--   <p *ngFor=\"let known of people.known_for\">\n            <span>{{known.original_tile}}</span>\n        </p>-->\n\n      </div>\n      <br/>\n    </div>\n</div>\n<br/>\n\n<hr/>\n\n<div class=\"row\">\n  <div class=\"col-xs-12 col-12\">\n    <pagination [totalItems]=\"100\" [(ngModel)]=\"currentPage\" (pageChanged)=\"getPeopleList($event)\"></pagination>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -525,6 +527,8 @@ var PeopleComponent = /** @class */ (function () {
         this.movieServiceService = movieServiceService;
         this.ngxLoader = ngxLoader;
         this.imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
+        this.currentPage = 1;
+        this.smallnumPages = 0;
     }
     PeopleComponent.prototype.ngOnInit = function () {
         this.getPeopleList('');
@@ -532,12 +536,13 @@ var PeopleComponent = /** @class */ (function () {
     PeopleComponent.prototype.getPeopleList = function (pageNo) {
         var _this = this;
         this.ngxLoader.start();
-        this.movieServiceService.getPoepleList(pageNo)
+        this.movieServiceService.getPoepleList(pageNo.page)
             .subscribe(function (res) {
             _this.peopleList = res.results;
             _this.ngxLoader.stop();
         }, function (error) { return console.log(error); });
     };
+    ;
     PeopleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-people',

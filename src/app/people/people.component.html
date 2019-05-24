@@ -22,12 +22,9 @@
 <br/>
 
 <hr/>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">    
-    <li class="page-item"><a class="page-link" (click)="getPeopleList(1)">1</a></li>
-    <li class="page-item"><a class="page-link"  (click)="getPeopleList(2)">2</a></li>
-    <li class="page-item"><a class="page-link" (click)="getPeopleList(3)">3</a></li>
-    <li class="page-item"><a class="page-link" (click)="getPeopleList(4)">4</a></li>
-    <li class="page-item"><a class="page-link" (click)="getPeopleList(5)">5</a></li>    
-  </ul>
-</nav>
+
+<div class="row">
+  <div class="col-xs-12 col-12">
+    <pagination [totalItems]="100" [(ngModel)]="currentPage" (pageChanged)="getPeopleList($event)"></pagination>
+  </div>
+</div>

@@ -14,7 +14,8 @@ import { TvshowsComponent } from './tvshows/tvshows.component';
 import { PeopleComponent } from './people/people.component';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { ModalModule } from 'ngx-bootstrap/modal'
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ModalModule } from 'ngx-bootstrap/modal'
     NgbModule,
     HttpClientModule,
     NgxUiLoaderModule,    
-    TypeaheadModule.forRoot(), ModalModule.forRoot()
+    TypeaheadModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

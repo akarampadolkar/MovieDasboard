@@ -1,18 +1,27 @@
-
-
 <div class="row">  
-     <div class="col-12">                
+    <div class="col-lg-12">            
+      <input id="title" class="form-control" name="title"
+            placeholder="Search movie here"
+            [(ngModel)]="searchTerm"
+            [typeahead]="titles"
+            [typeaheadOptionsLimit]="10">
+  </div>
+    
+    <br/>
+      <!-- <div class="col-lg-12">                
           <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search movie here" [(ngModel)]="searchTerm">
-      </div>
-</div>
+      </div>-->
+
+    </div>
 
 <hr/>
 
 <div class="row">
-    <div class="col" *ngFor="let movie of moviesList | movieFilter:searchTerm">
-      <img src="{{imageBaseURl }}{{movie.poster_path}}" width="250px" alt="movie picture" data-toggle="modal" 
-      data-target="#myModal"      
-      (click)="onSelect(movie)">
+    <div class="col-lg-3" *ngFor="let movie of moviesList | movieFilter:searchTerm">
+      <div class="cursor-feature">
+        <img src="{{imageBaseURl }}{{movie.poster_path}}" width="300px" alt="movie picture"                     
+        (click)="openModal(template,movie)">
+      </div>
       <p></p>
     </div>
 </div>
@@ -20,29 +29,14 @@
 
 <hr/>
 
-<!-- modal template -->
-
-<div class="container">  
-  <div class="modal" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">     
-  
-        <div class="modal-header">
-          <h4 class="modal-title">Movie Detial</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>        
-  
-        <div class="modal-body">
-
-          <!-- binded movie detail component-->          
-          <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
-        </div>        
-  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>        
-      </div>
-    </div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  
-</div> 
+  <div class="modal-body">
+    <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
+  </div>
+</ng-template>

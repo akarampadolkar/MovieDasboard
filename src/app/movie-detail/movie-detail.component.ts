@@ -8,10 +8,10 @@ import { Movie } from '.././movie';
 })
 export class MovieDetailComponent implements OnInit {
 
+  imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
   constructor() { }
 
   ngOnInit() {
-  }
-  imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
+  }  
   @Input() movie: Movie;  
 }

@@ -1,11 +1,11 @@
 
 <div class="row">
-    <div class="col" *ngFor="let tvshow of tvshowlist">      
+    <div class="col-lg-3" *ngFor="let tvshow of tvshowlist">      
        <div *ngIf="tvshow.poster_path">
-          <img src="{{imageBaseURl}}{{tvshow.poster_path}}" width="250px" height="350px" alt="tv poster">
+          <img src="{{imageBaseURl}}{{tvshow.poster_path}}" width="300px" height="350px" alt="tv poster">
         </div>
         <div *ngIf="tvshow.poster_path == null">
-          <img src="../../assets/img/download.png" width="250px" height="350px" alt="tv poster">
+          <img src="../../assets/img/download.png" width="300px" height="350px" alt="tv poster">
         </div>
       <p></p>
     </div>

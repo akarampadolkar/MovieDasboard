@@ -12,6 +12,9 @@ import { MovieFilterPipe } from './movie-filter.pipe';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { TvshowsComponent } from './tvshows/tvshows.component';
 import { PeopleComponent } from './people/people.component';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { ModalModule } from 'ngx-bootstrap/modal'
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { PeopleComponent } from './people/people.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxUiLoaderModule,    
+    TypeaheadModule.forRoot(), ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

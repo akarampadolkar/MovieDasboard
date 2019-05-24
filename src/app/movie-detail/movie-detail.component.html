@@ -1,15 +1,15 @@
 <div *ngIf="movie">
   <div class="row">
-    <div class="col-4">
-      <img src="{{imageBaseURl}}{{movie.poster_path}}" width="200px" alt="movie picture">
+    <div class="col-lg-6">
+      <img src="{{imageBaseURl}}{{movie.poster_path}}" width="250px" alt="movie picture">
     </div>
-    <div class="col-8">
+    <div class="col-lg-6">
       <h3> {{movie.original_title}}</h3>  
 
       <p> 
         <span class="icon-circle"><i class="fa fa-list"></i></span>
         <span class="icon-circle"><i class="fa fa-heart"></i></span>
-        <span class="icon-circle"><i class="fa fa-star"></i></span>
+        <span class="icon-circle"><i class="fa fa-star"></i></span>             
       </p>
 
         <p> <b>Overview</b> : {{movie.overview}}</p>

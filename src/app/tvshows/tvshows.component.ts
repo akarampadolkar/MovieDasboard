@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieServiceService } from '../movie-service.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-tvshows',
@@ -8,19 +9,22 @@ import { MovieServiceService } from '../movie-service.service';
 })
 export class TvshowsComponent implements OnInit {
 
-  constructor(private movieServiceService: MovieServiceService) { }
+  imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
+  tvshowlist : any;
+
+  constructor(private movieServiceService: MovieServiceService, private ngxLoader: NgxUiLoaderService) { }
 
   ngOnInit() {
     this.getTvShowList();
   }
 
-  imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
-  tvshowlist : any;
-
-  
   getTvShowList():void{
+    this.ngxLoader.start();
     this.movieServiceService.getTvShowList()
-    .subscribe((res) => this.tvshowlist = res.results);
+    .subscribe((res) => {      
+      this.tvshowlist = res.results;      
+      this.ngxLoader.stop();
+      },(error) => console.log(error));
   }
 
 

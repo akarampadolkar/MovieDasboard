@@ -20,7 +20,7 @@
     <div class="col-lg-3" *ngFor="let movie of moviesList | movieFilter:searchTerm">
       <div class="cursor-feature">
         <img src="{{imageBaseURl }}{{movie.poster_path}}" width="300px" alt="movie picture"                     
-        (click)="openModal(template,movie)">
+        (click)="openModalWithComponent(movie)">
       </div>
       <p></p>
     </div>
@@ -37,6 +37,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-movie-detail [movie]="selectedMovie"></app-movie-detail>
-  </div>
+    <app-movie-detail></app-movie-detail>
+  </div>  
 </ng-template>

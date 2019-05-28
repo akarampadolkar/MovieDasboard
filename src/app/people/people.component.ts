@@ -14,7 +14,8 @@ export class PeopleComponent implements OnInit {
 
   currentPage = 1;
   page: number; 
-  smallnumPages = 0;
+  smallnumPages = 0;  
+  isReadonly: boolean = true;
 
   constructor(private movieServiceService:MovieServiceService,private ngxLoader: NgxUiLoaderService) { }
 

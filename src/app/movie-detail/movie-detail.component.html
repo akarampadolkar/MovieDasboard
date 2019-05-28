@@ -1,21 +1,21 @@
-<div *ngIf="movie">
-  <div class="row">
-    <div class="col-lg-6">
-      <img src="{{imageBaseURl}}{{movie.poster_path}}" width="250px" alt="movie picture">
-    </div>
-    <div class="col-lg-6">
-      <h3> {{movie.original_title}}</h3>  
+  <div *ngIf="movie">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="{{imageBaseURl}}{{movie.poster_path}}" width="250px" alt="movie picture">
+        </div>
+        <div class="col-lg-6">
+          <h3> {{movie.original_title}}</h3>  
 
-      <p> 
-        <span class="icon-circle"><i class="fa fa-list"></i></span>
-        <span class="icon-circle"><i class="fa fa-heart"></i></span>
-        <span class="icon-circle"><i class="fa fa-star"></i></span>             
-      </p>
+          <p> 
+            <span class="icon-circle"><i class="fa fa-list"></i></span>
+            <span class="icon-circle"><i class="fa fa-heart"></i></span>
+            <span class="icon-circle"><i class="fa fa-star"></i></span>             
+          </p>
 
-        <p> <b>Overview</b> : {{movie.overview}}</p>
-        <p> <b>Realse Date</b> : {{movie.release_date}}</p> 
-        <p> <b>Rating</b> : {{movie.vote_average}} / 10</p>
-        <p> <b>Language</b> : {{movie.original_language}}</p>
+            <p> <b>Overview</b> : {{movie.overview}}</p>
+            <p> <b>Realse Date</b> : {{movie.release_date}}</p> 
+            <p><b>Rating</b> : <rating [(ngModel)]="movie.vote_average" [max]="10" [readonly]="isReadonly"></rating></p>        
+            <p> <b>Language</b> : {{movie.original_language}}</p>        
+        </div>
+      </div>      
     </div>
-  </div>      
-</div>  

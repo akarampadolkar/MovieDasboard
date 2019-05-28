@@ -1,7 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MovieServiceService } from '../movie-service.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { DataserviceService } from '../dataservice.service';
 import { Movie } from '.././movie';
+import { ModalComponentComponent } from './../modal-component/modal-component.component'
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
@@ -16,16 +18,19 @@ export class DashboardComponent implements OnInit {
   imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
   //movies: Movie[];
   moviesList : any;
-  modalRef: BsModalRef;
-
+  modalRef : BsModalRef;
+  
   titles = [];
+  selectedMovie : any;
 
-  loadingIcon = true;
   constructor(
       private movieServiceService: MovieServiceService ,  
-      private ngxLoader: NgxUiLoaderService,
-      private modalService: BsModalService
-      ) { }
+      private ngxLoader: NgxUiLoaderService,   
+      private modalService : BsModalService,   
+      private dataserviceService : DataserviceService
+      ) { 
+        
+      }
   
 
   ngOnInit() {
@@ -53,15 +58,16 @@ export class DashboardComponent implements OnInit {
     },(error) => console.log(error));        
   }
 
-  //showing selected movie
-  selectedMovie: any;
+  //showing selected movie  
   /*onSelect(movie: any): void {    
     this.selectedMovie = movie;
   }*/
 
   //modal
-  openModal(template: TemplateRef<any>,movie:any) {
-    this.selectedMovie = movie;
-    this.modalRef = this.modalService.show(template);
+  openModalWithComponent(movie: any) {
+    const initialState = {  title: movie.original_title };
+    this.selectedMovie = movie;        
+    this.dataserviceService.setData(this.selectedMovie);
+    this.modalRef = this.modalService.show(ModalComponentComponent,{initialState});
   }
 }

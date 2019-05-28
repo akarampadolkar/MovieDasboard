@@ -39,6 +39,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
 /* harmony import */ var _tvshows_tvshows_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tvshows/tvshows.component */ "./src/app/tvshows/tvshows.component.ts");
 /* harmony import */ var _people_people_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./people/people.component */ "./src/app/people/people.component.ts");
+/* harmony import */ var _artist_artist_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./artist/artist.component */ "./src/app/artist/artist.component.ts");
+/* harmony import */ var _artist_track_list_artist_track_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./artist-track-list/artist-track-list.component */ "./src/app/artist-track-list/artist-track-list.component.ts");
+/* harmony import */ var _artist_album_list_artist_album_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./artist-album-list/artist-album-list.component */ "./src/app/artist-album-list/artist-album-list.component.ts");
+
+
+
 
 
 
@@ -49,6 +55,15 @@ var routes = [
     { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"] },
     { path: 'tvshows', component: _tvshows_tvshows_component__WEBPACK_IMPORTED_MODULE_4__["TvshowsComponent"] },
     { path: 'people', component: _people_people_component__WEBPACK_IMPORTED_MODULE_5__["PeopleComponent"] },
+    {
+        path: 'artist',
+        component: _artist_artist_component__WEBPACK_IMPORTED_MODULE_6__["ArtistComponent"],
+        children: [
+            { path: '', redirectTo: 'tracks', pathMatch: 'full' },
+            { path: 'tracks', component: _artist_track_list_artist_track_list_component__WEBPACK_IMPORTED_MODULE_7__["ArtistTrackListComponent"] },
+            { path: 'albums', component: _artist_album_list_artist_album_list_component__WEBPACK_IMPORTED_MODULE_8__["ArtistAlbumListComponent"] }
+        ]
+    },
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -56,7 +71,7 @@ var AppRoutingModule = /** @class */ (function () {
     }
     AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, { useHash: true })],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
         })
     ], AppRoutingModule);
@@ -85,7 +100,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<ngx-ui-loader></ngx-ui-loader>\n\n<div class=\"container-fluid\">\n<br/>\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a class=\"navbar-brand\" routerLink=\"/\">{{ title }}</a>\n    </div>\n    <ul class=\"nav navbar-nav\">\n\n      <li [routerLinkActive]=\"['active']\">\n        <a routerLink=\"/dashboard\" >{{showType[0]}}</a>\n        </li>\n\n      <li [routerLinkActive]=\"['active']\">\n        <a routerLink=\"/tvshows\">{{showType[1]}}</a>\n      </li>\n\n      <li [routerLinkActive]=\"['active']\">\n        <a routerLink=\"/people\">{{showType[2]}}</a>\n      </li>\n\n    </ul>\n  </div>\n</nav>\n\n<!-- dashboard component bind -->\n<br/>\n<br/>\n\n<router-outlet></router-outlet>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<ngx-ui-loader></ngx-ui-loader>\n\n<div class=\"container-fluid\">\n<br/>\n<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a class=\"navbar-brand\" routerLink=\"/\">{{ title }}</a>\n    </div>\n    <ul class=\"nav navbar-nav\">\n\n      <li [routerLinkActive]=\"['active']\">\n        <a routerLink=\"/dashboard\" >{{showType[0]}}</a>\n        </li>\n\n      <li [routerLinkActive]=\"['active']\">\n        <a routerLink=\"/tvshows\">{{showType[1]}}</a>\n      </li>\n\n      <li [routerLinkActive]=\"['active']\">\n        <a routerLink=\"/people\">{{showType[2]}}</a>\n      </li>\n\n        <li [routerLinkActive]=\"['active']\">\n          <a routerLink=\"/artist\">{{showType[3]}}</a>\n        </li>\n\n    </ul>\n  </div>\n</nav>\n\n<!-- dashboard component bind -->\n<br/>\n<br/>\n\n<router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -106,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'Movie Dashboard';
-        this.showType = ['Movies', 'TV Shows', 'People'];
+        this.showType = ['Movies', 'TV Shows', 'People', 'Artist'];
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -150,6 +165,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-bootstrap/typeahead */ "./node_modules/ngx-bootstrap/typeahead/fesm5/ngx-bootstrap-typeahead.js");
 /* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
 /* harmony import */ var ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ngx-bootstrap/pagination */ "./node_modules/ngx-bootstrap/pagination/fesm5/ngx-bootstrap-pagination.js");
+/* harmony import */ var ngx_bootstrap_rating__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ngx-bootstrap/rating */ "./node_modules/ngx-bootstrap/rating/fesm5/ngx-bootstrap-rating.js");
+/* harmony import */ var _artist_artist_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./artist/artist.component */ "./src/app/artist/artist.component.ts");
+/* harmony import */ var _artist_track_list_artist_track_list_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./artist-track-list/artist-track-list.component */ "./src/app/artist-track-list/artist-track-list.component.ts");
+/* harmony import */ var _artist_album_list_artist_album_list_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./artist-album-list/artist-album-list.component */ "./src/app/artist-album-list/artist-album-list.component.ts");
+/* harmony import */ var _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modal-component/modal-component.component */ "./src/app/modal-component/modal-component.component.ts");
+
+
+
+
+
 
 
 
@@ -179,7 +204,11 @@ var AppModule = /** @class */ (function () {
                 _movie_filter_pipe__WEBPACK_IMPORTED_MODULE_10__["MovieFilterPipe"],
                 _movie_detail_movie_detail_component__WEBPACK_IMPORTED_MODULE_11__["MovieDetailComponent"],
                 _tvshows_tvshows_component__WEBPACK_IMPORTED_MODULE_12__["TvshowsComponent"],
-                _people_people_component__WEBPACK_IMPORTED_MODULE_13__["PeopleComponent"]
+                _people_people_component__WEBPACK_IMPORTED_MODULE_13__["PeopleComponent"],
+                _artist_artist_component__WEBPACK_IMPORTED_MODULE_19__["ArtistComponent"],
+                _artist_track_list_artist_track_list_component__WEBPACK_IMPORTED_MODULE_20__["ArtistTrackListComponent"],
+                _artist_album_list_artist_album_list_component__WEBPACK_IMPORTED_MODULE_21__["ArtistAlbumListComponent"],
+                _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_22__["ModalComponentComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -189,13 +218,182 @@ var AppModule = /** @class */ (function () {
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
                 ngx_ui_loader__WEBPACK_IMPORTED_MODULE_14__["NgxUiLoaderModule"],
-                ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_15__["TypeaheadModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_16__["ModalModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_17__["PaginationModule"].forRoot()
+                ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_15__["TypeaheadModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_16__["ModalModule"].forRoot(), ngx_bootstrap_pagination__WEBPACK_IMPORTED_MODULE_17__["PaginationModule"].forRoot(), ngx_bootstrap_rating__WEBPACK_IMPORTED_MODULE_18__["RatingModule"].forRoot()
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]],
+            entryComponents: [_modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_22__["ModalComponentComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/artist-album-list/artist-album-list.component.css":
+/*!*******************************************************************!*\
+  !*** ./src/app/artist-album-list/artist-album-list.component.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FydGlzdC1hbGJ1bS1saXN0L2FydGlzdC1hbGJ1bS1saXN0LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/artist-album-list/artist-album-list.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/artist-album-list/artist-album-list.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  artist-album-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/artist-album-list/artist-album-list.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/artist-album-list/artist-album-list.component.ts ***!
+  \******************************************************************/
+/*! exports provided: ArtistAlbumListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArtistAlbumListComponent", function() { return ArtistAlbumListComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ArtistAlbumListComponent = /** @class */ (function () {
+    function ArtistAlbumListComponent() {
+    }
+    ArtistAlbumListComponent.prototype.ngOnInit = function () {
+    };
+    ArtistAlbumListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-artist-album-list',
+            template: __webpack_require__(/*! ./artist-album-list.component.html */ "./src/app/artist-album-list/artist-album-list.component.html"),
+            styles: [__webpack_require__(/*! ./artist-album-list.component.css */ "./src/app/artist-album-list/artist-album-list.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ArtistAlbumListComponent);
+    return ArtistAlbumListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/artist-track-list/artist-track-list.component.css":
+/*!*******************************************************************!*\
+  !*** ./src/app/artist-track-list/artist-track-list.component.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FydGlzdC10cmFjay1saXN0L2FydGlzdC10cmFjay1saXN0LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/artist-track-list/artist-track-list.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/artist-track-list/artist-track-list.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  artist-track-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/artist-track-list/artist-track-list.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/artist-track-list/artist-track-list.component.ts ***!
+  \******************************************************************/
+/*! exports provided: ArtistTrackListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArtistTrackListComponent", function() { return ArtistTrackListComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ArtistTrackListComponent = /** @class */ (function () {
+    function ArtistTrackListComponent() {
+    }
+    ArtistTrackListComponent.prototype.ngOnInit = function () {
+    };
+    ArtistTrackListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-artist-track-list',
+            template: __webpack_require__(/*! ./artist-track-list.component.html */ "./src/app/artist-track-list/artist-track-list.component.html"),
+            styles: [__webpack_require__(/*! ./artist-track-list.component.css */ "./src/app/artist-track-list/artist-track-list.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ArtistTrackListComponent);
+    return ArtistTrackListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/artist/artist.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/artist/artist.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FydGlzdC9hcnRpc3QuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/artist/artist.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/artist/artist.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Artist</h1>\n<p>\n  <a [routerLink]=\"['./tracks']\">Tracks</a> |\n  <a [routerLink]=\"['./albums']\">Albums</a>\n</p>\n\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "./src/app/artist/artist.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/artist/artist.component.ts ***!
+  \********************************************/
+/*! exports provided: ArtistComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArtistComponent", function() { return ArtistComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ArtistComponent = /** @class */ (function () {
+    function ArtistComponent() {
+    }
+    ArtistComponent.prototype.ngOnInit = function () {
+    };
+    ArtistComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-artist',
+            template: __webpack_require__(/*! ./artist.component.html */ "./src/app/artist/artist.component.html"),
+            styles: [__webpack_require__(/*! ./artist.component.css */ "./src/app/artist/artist.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ArtistComponent);
+    return ArtistComponent;
 }());
 
 
@@ -220,7 +418,7 @@ module.exports = ".cursor-feature{\r\n    cursor: pointer;\r\n}\r\n\r\n/*# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">  \n    <div class=\"col-lg-12\">            \n      <input id=\"title\" class=\"form-control\" name=\"title\"\n            placeholder=\"Search movie here\"\n            [(ngModel)]=\"searchTerm\"\n            [typeahead]=\"titles\"\n            [typeaheadOptionsLimit]=\"10\">\n  </div>\n    \n    <br/>\n      <!-- <div class=\"col-lg-12\">                \n          <input class=\"form-control form-control-lg form-control-borderless\" type=\"search\" placeholder=\"Search movie here\" [(ngModel)]=\"searchTerm\">\n      </div>-->\n\n    </div>\n\n<hr/>\n\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let movie of moviesList | movieFilter:searchTerm\">\n      <div class=\"cursor-feature\">\n        <img src=\"{{imageBaseURl }}{{movie.poster_path}}\" width=\"300px\" alt=\"movie picture\"                     \n        (click)=\"openModal(template,movie)\">\n      </div>\n      <p></p>\n    </div>\n</div>\n<br/>\n\n<hr/>\n\n<ng-template #template>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title pull-left\">Modal</h4>\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <app-movie-detail [movie]=\"selectedMovie\"></app-movie-detail>\n  </div>\n</ng-template>"
+module.exports = "<div class=\"row\">  \n    <div class=\"col-lg-12\">            \n      <input id=\"title\" class=\"form-control\" name=\"title\"\n            placeholder=\"Search movie here\"\n            [(ngModel)]=\"searchTerm\"\n            [typeahead]=\"titles\"\n            [typeaheadOptionsLimit]=\"10\">\n  </div>\n    \n    <br/>\n      <!-- <div class=\"col-lg-12\">                \n          <input class=\"form-control form-control-lg form-control-borderless\" type=\"search\" placeholder=\"Search movie here\" [(ngModel)]=\"searchTerm\">\n      </div>-->\n\n    </div>\n\n<hr/>\n\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let movie of moviesList | movieFilter:searchTerm\">\n      <div class=\"cursor-feature\">\n        <img src=\"{{imageBaseURl }}{{movie.poster_path}}\" width=\"300px\" alt=\"movie picture\"                     \n        (click)=\"openModalWithComponent(movie)\">\n      </div>\n      <p></p>\n    </div>\n</div>\n<br/>\n\n<hr/>\n\n<ng-template #template>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title pull-left\">Modal</h4>\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <app-movie-detail></app-movie-detail>\n  </div>  \n</ng-template>"
 
 /***/ }),
 
@@ -236,22 +434,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
-/* harmony import */ var _movie_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../movie-service.service */ "./src/app/movie-service.service.ts");
-/* harmony import */ var ngx_ui_loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-ui-loader */ "./node_modules/ngx-ui-loader/fesm5/ngx-ui-loader.js");
+/* harmony import */ var _movie_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../movie-service.service */ "./src/app/movie-service.service.ts");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _dataservice_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dataservice.service */ "./src/app/dataservice.service.ts");
+/* harmony import */ var _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../modal-component/modal-component.component */ "./src/app/modal-component/modal-component.component.ts");
+/* harmony import */ var ngx_ui_loader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-ui-loader */ "./node_modules/ngx-ui-loader/fesm5/ngx-ui-loader.js");
+
+
 
 
 
 
 
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(movieServiceService, ngxLoader, modalService) {
+    function DashboardComponent(movieServiceService, ngxLoader, modalService, dataserviceService) {
         this.movieServiceService = movieServiceService;
         this.ngxLoader = ngxLoader;
         this.modalService = modalService;
+        this.dataserviceService = dataserviceService;
         this.imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
         this.titles = [];
-        this.loadingIcon = true;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         //service call for getting all movies
@@ -274,13 +476,16 @@ var DashboardComponent = /** @class */ (function () {
             });
         }, function (error) { return console.log(error); });
     };
+    //showing selected movie  
     /*onSelect(movie: any): void {
       this.selectedMovie = movie;
     }*/
     //modal
-    DashboardComponent.prototype.openModal = function (template, movie) {
+    DashboardComponent.prototype.openModalWithComponent = function (movie) {
+        var initialState = { title: movie.original_title };
         this.selectedMovie = movie;
-        this.modalRef = this.modalService.show(template);
+        this.dataserviceService.setData(this.selectedMovie);
+        this.modalRef = this.modalService.show(_modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_5__["ModalComponentComponent"], { initialState: initialState });
     };
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -288,11 +493,105 @@ var DashboardComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/dashboard/dashboard.component.html"),
             styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/dashboard/dashboard.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movie_service_service__WEBPACK_IMPORTED_MODULE_3__["MovieServiceService"],
-            ngx_ui_loader__WEBPACK_IMPORTED_MODULE_4__["NgxUiLoaderService"],
-            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movie_service_service__WEBPACK_IMPORTED_MODULE_2__["MovieServiceService"],
+            ngx_ui_loader__WEBPACK_IMPORTED_MODULE_6__["NgxUiLoaderService"],
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_3__["BsModalService"],
+            _dataservice_service__WEBPACK_IMPORTED_MODULE_4__["DataserviceService"]])
     ], DashboardComponent);
     return DashboardComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dataservice.service.ts":
+/*!****************************************!*\
+  !*** ./src/app/dataservice.service.ts ***!
+  \****************************************/
+/*! exports provided: DataserviceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataserviceService", function() { return DataserviceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var DataserviceService = /** @class */ (function () {
+    function DataserviceService() {
+        this.data = {};
+    }
+    DataserviceService.prototype.setData = function (selectedMovie) {
+        this.data = selectedMovie;
+    };
+    DataserviceService.prototype.getData = function () {
+        return this.data;
+    };
+    DataserviceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], DataserviceService);
+    return DataserviceService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/modal-component/modal-component.component.css":
+/*!***************************************************************!*\
+  !*** ./src/app/modal-component/modal-component.component.css ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsLWNvbXBvbmVudC9tb2RhbC1jb21wb25lbnQuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/modal-component/modal-component.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/modal-component/modal-component.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Movie Name : {{title}}</h4>\n            <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\n                <span aria-hidden=\"true\">&times;</span>\n            </button>\n    </div>\n    <div class=\"modal-body\">\n        <app-movie-detail></app-movie-detail>\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"bsModalRef.hide()\">Close</button>\n    </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/modal-component/modal-component.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/modal-component/modal-component.component.ts ***!
+  \**************************************************************/
+/*! exports provided: ModalComponentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalComponentComponent", function() { return ModalComponentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ModalComponentComponent = /** @class */ (function () {
+    function ModalComponentComponent() {
+    }
+    ModalComponentComponent.prototype.ngOnInit = function () {
+    };
+    ModalComponentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-modal-component',
+            template: __webpack_require__(/*! ./modal-component.component.html */ "./src/app/modal-component/modal-component.component.html"),
+            styles: [__webpack_require__(/*! ./modal-component.component.css */ "./src/app/modal-component/modal-component.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ModalComponentComponent);
+    return ModalComponentComponent;
 }());
 
 
@@ -317,7 +616,7 @@ module.exports = ".icon-circle{\r\n    border:1px solid black;\r\n    padding:10
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"movie\">\n  <div class=\"row\">\n    <div class=\"col-lg-6\">\n      <img src=\"{{imageBaseURl}}{{movie.poster_path}}\" width=\"250px\" alt=\"movie picture\">\n    </div>\n    <div class=\"col-lg-6\">\n      <h3> {{movie.original_title}}</h3>  \n\n      <p> \n        <span class=\"icon-circle\"><i class=\"fa fa-list\"></i></span>\n        <span class=\"icon-circle\"><i class=\"fa fa-heart\"></i></span>\n        <span class=\"icon-circle\"><i class=\"fa fa-star\"></i></span>             \n      </p>\n\n        <p> <b>Overview</b> : {{movie.overview}}</p>\n        <p> <b>Realse Date</b> : {{movie.release_date}}</p> \n        <p> <b>Rating</b> : {{movie.vote_average}} / 10</p>\n        <p> <b>Language</b> : {{movie.original_language}}</p>\n    </div>\n  </div>      \n</div>  "
+module.exports = "  <div *ngIf=\"movie\">\n      <div class=\"row\">\n        <div class=\"col-lg-6\">\n          <img src=\"{{imageBaseURl}}{{movie.poster_path}}\" width=\"250px\" alt=\"movie picture\">\n        </div>\n        <div class=\"col-lg-6\">\n          <h3> {{movie.original_title}}</h3>  \n\n          <p> \n            <span class=\"icon-circle\"><i class=\"fa fa-list\"></i></span>\n            <span class=\"icon-circle\"><i class=\"fa fa-heart\"></i></span>\n            <span class=\"icon-circle\"><i class=\"fa fa-star\"></i></span>             \n          </p>\n\n            <p> <b>Overview</b> : {{movie.overview}}</p>\n            <p> <b>Realse Date</b> : {{movie.release_date}}</p> \n            <p><b>Rating</b> : <rating [(ngModel)]=\"movie.vote_average\" [max]=\"10\" [readonly]=\"isReadonly\"></rating></p>        \n            <p> <b>Language</b> : {{movie.original_language}}</p>        \n        </div>\n      </div>      \n    </div>\n"
 
 /***/ }),
 
@@ -333,27 +632,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovieDetailComponent", function() { return MovieDetailComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _movie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! .././movie */ "./src/app/movie.ts");
+/* harmony import */ var _dataservice_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dataservice.service */ "./src/app/dataservice.service.ts");
 
 
 
 var MovieDetailComponent = /** @class */ (function () {
-    function MovieDetailComponent() {
+    function MovieDetailComponent(dataserviceService) {
+        this.dataserviceService = dataserviceService;
         this.imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
     }
     MovieDetailComponent.prototype.ngOnInit = function () {
+        this.getSelectedMovie();
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _movie__WEBPACK_IMPORTED_MODULE_2__["Movie"])
-    ], MovieDetailComponent.prototype, "movie", void 0);
+    // @Input() movie: Movie; 
+    MovieDetailComponent.prototype.getSelectedMovie = function () {
+        this.movie = this.dataserviceService.getData();
+    };
     MovieDetailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-movie-detail',
             template: __webpack_require__(/*! ./movie-detail.component.html */ "./src/app/movie-detail/movie-detail.component.html"),
             styles: [__webpack_require__(/*! ./movie-detail.component.css */ "./src/app/movie-detail/movie-detail.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_dataservice_service__WEBPACK_IMPORTED_MODULE_2__["DataserviceService"]])
     ], MovieDetailComponent);
     return MovieDetailComponent;
 }());
@@ -462,26 +763,6 @@ var MovieServiceService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/movie.ts":
-/*!**************************!*\
-  !*** ./src/app/movie.ts ***!
-  \**************************/
-/*! exports provided: Movie */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Movie", function() { return Movie; });
-var Movie = /** @class */ (function () {
-    function Movie() {
-    }
-    return Movie;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/people/people.component.css":
 /*!*********************************************!*\
   !*** ./src/app/people/people.component.css ***!
@@ -529,6 +810,7 @@ var PeopleComponent = /** @class */ (function () {
         this.imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
         this.currentPage = 1;
         this.smallnumPages = 0;
+        this.isReadonly = true;
     }
     PeopleComponent.prototype.ngOnInit = function () {
         this.getPeopleList('');

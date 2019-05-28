@@ -15,7 +15,12 @@ import { PeopleComponent } from './people/people.component';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { PaginationModule } from 'ngx-bootstrap/pagination'
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { RatingModule } from 'ngx-bootstrap/rating';
+import { ArtistComponent } from './artist/artist.component';
+import { ArtistTrackListComponent } from './artist-track-list/artist-track-list.component';
+import { ArtistAlbumListComponent } from './artist-album-list/artist-album-list.component';
+import { ModalComponentComponent } from './modal-component/modal-component.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +29,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination'
     MovieFilterPipe,
     MovieDetailComponent,
     TvshowsComponent,
-    PeopleComponent
+    PeopleComponent,
+    ArtistComponent,
+    ArtistTrackListComponent,
+    ArtistAlbumListComponent,
+    ModalComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +43,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination'
     NgbModule,
     HttpClientModule,
     NgxUiLoaderModule,    
-    TypeaheadModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot()
+    TypeaheadModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot(), RatingModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponentComponent]
 })
 export class AppModule { }

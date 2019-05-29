@@ -8,12 +8,14 @@ import { BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
   styleUrls: ['./modal-component.component.css']
 })
 export class ModalComponentComponent implements OnInit {
-
-  bsModalRef : BsModalRef;
+  
   title : string;
-  constructor() { }
+  constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
   }
 
+  closeModal(){
+    this.bsModalRef.hide();
+  }
 }

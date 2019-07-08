@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
   openModalWithComponent(movie: any) {
     const initialState = {  title: movie.original_title };
     this.selectedMovie = movie;        
-    this.dataserviceService.setData(this.selectedMovie);
+    this.dataserviceService.setData(this.selectedMovie,'movie');
     this.modalRef = this.modalService.show(ModalComponentComponent,{initialState});
   }
 }

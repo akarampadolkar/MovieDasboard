@@ -1,0 +1,19 @@
+  <div *ngIf="people">
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="{{imageBaseURl}}{{people.profile_path}}" width="250px" alt="movie picture">
+        </div>
+        <div class="col-lg-6">
+          <h3> {{people.name}}</h3>  
+          <div *ngFor="let known of people.known_for">
+                <p><b>Known</b> :{{known.media_type}}</p>
+                <p><b>Original Language</b> :{{known.original_language}}</p>
+                <p><b>Original Title</b> :{{known.original_title}}</p>
+                <p> <b>Overview</b> : {{known.overview}}</p>
+                <p> <b>Realse Date</b> : {{known.release_date}}</p>
+                <p><b>Rating</b> : <rating [(ngModel)]="known.vote_average" [max]="10" [readonly]="isReadonly"></rating></p>        
+                <hr/>
+          </div>
+        </div>
+      </div>      
+    </div>

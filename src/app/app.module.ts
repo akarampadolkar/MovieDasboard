@@ -20,7 +20,8 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { ArtistComponent } from './artist/artist.component';
 import { ArtistTrackListComponent } from './artist-track-list/artist-track-list.component';
 import { ArtistAlbumListComponent } from './artist-album-list/artist-album-list.component';
-import { ModalComponentComponent } from './modal-component/modal-component.component'
+import { ModalComponentComponent } from './modal-component/modal-component.component';
+import { PeopleDetailComponent } from './people-detail/people-detail.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ModalComponentComponent } from './modal-component/modal-component.compo
     ArtistComponent,
     ArtistTrackListComponent,
     ArtistAlbumListComponent,
-    ModalComponentComponent
+    ModalComponentComponent,
+    PeopleDetailComponent
   ],
   imports: [
     BrowserModule,

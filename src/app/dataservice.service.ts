@@ -10,9 +10,12 @@ export class DataserviceService {
   
   constructor() { }
 
-    setData(selectedMovie) {  
-      this.data = selectedMovie;      
+    setData(selectedItem,type) {      
+      this.data = {
+        item : selectedItem,
+        type : type
     }
+  }
 
     getData(){
       return this.data;

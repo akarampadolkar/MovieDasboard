@@ -2,11 +2,13 @@
 <div class="row">
     <div class="col-lg-3" *ngFor="let people of peopleList">      
       <div class="card">
-        <div *ngIf="people.profile_path">
-          <img src="{{imageBaseURl}}{{people.profile_path}}" width="300px" height="350px" alt="profile">
+        <div *ngIf="people.profile_path" class="cursor-feature">
+          <img src="{{imageBaseURl}}{{people.profile_path}}" width="300px" height="350px" alt="profile"
+          (click)="openModalWithComponent(people)">
         </div>
-        <div *ngIf="people.profile_path == null">
-          <img src="../../assets/img/download.png" width="300px" height="350px" alt="profile">
+        <div *ngIf="people.profile_path == null" class="cursor-feature">
+          <img src="../../assets/img/download.png" width="300px" height="350px" alt="profile"  
+          (click)="openModalWithComponent(null)">
         </div>
         
         <p><b>{{people.name}}</b></p> 

@@ -11,6 +11,7 @@ export class MovieDetailComponent implements OnInit {
 
   imageBaseURl = 'https://image.tmdb.org/t/p/w500/';  
   movie : any;
+  data : any;
   constructor(
     private dataserviceService : DataserviceService
   ) { }
@@ -24,7 +25,7 @@ export class MovieDetailComponent implements OnInit {
 
 
   getSelectedMovie():void{    
-    this.movie = this.dataserviceService.getData(); 
-    
+    this.data = this.dataserviceService.getData(); 
+    this.movie = this.data.item;
   }
 }

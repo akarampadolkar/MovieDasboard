@@ -5,8 +5,11 @@
                 <span aria-hidden="true">&times;</span>
             </button>
     </div>
-    <div class="modal-body">
+    <div *ngIf="type === 'movie'" class="modal-body">
         <app-movie-detail></app-movie-detail>
+    </div>
+    <div *ngIf="type === 'people'" class="modal-body">
+        <app-people-detail></app-people-detail>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>

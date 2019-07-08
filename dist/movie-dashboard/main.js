@@ -170,6 +170,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _artist_track_list_artist_track_list_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./artist-track-list/artist-track-list.component */ "./src/app/artist-track-list/artist-track-list.component.ts");
 /* harmony import */ var _artist_album_list_artist_album_list_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./artist-album-list/artist-album-list.component */ "./src/app/artist-album-list/artist-album-list.component.ts");
 /* harmony import */ var _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modal-component/modal-component.component */ "./src/app/modal-component/modal-component.component.ts");
+/* harmony import */ var _people_detail_people_detail_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./people-detail/people-detail.component */ "./src/app/people-detail/people-detail.component.ts");
+
 
 
 
@@ -208,7 +210,8 @@ var AppModule = /** @class */ (function () {
                 _artist_artist_component__WEBPACK_IMPORTED_MODULE_19__["ArtistComponent"],
                 _artist_track_list_artist_track_list_component__WEBPACK_IMPORTED_MODULE_20__["ArtistTrackListComponent"],
                 _artist_album_list_artist_album_list_component__WEBPACK_IMPORTED_MODULE_21__["ArtistAlbumListComponent"],
-                _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_22__["ModalComponentComponent"]
+                _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_22__["ModalComponentComponent"],
+                _people_detail_people_detail_component__WEBPACK_IMPORTED_MODULE_23__["PeopleDetailComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -418,7 +421,7 @@ module.exports = ".cursor-feature{\r\n    cursor: pointer;\r\n}\r\n\r\n/*# sourc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">  \n    <div class=\"col-lg-12\">            \n      <input id=\"title\" class=\"form-control\" name=\"title\"\n            placeholder=\"Search movie here\"\n            [(ngModel)]=\"searchTerm\"\n            [typeahead]=\"titles\"\n            [typeaheadOptionsLimit]=\"10\">\n  </div>\n    \n    <br/>\n      <!-- <div class=\"col-lg-12\">                \n          <input class=\"form-control form-control-lg form-control-borderless\" type=\"search\" placeholder=\"Search movie here\" [(ngModel)]=\"searchTerm\">\n      </div>-->\n\n    </div>\n\n<hr/>\n\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let movie of moviesList | movieFilter:searchTerm\">\n      <div class=\"cursor-feature\">\n        <img src=\"{{imageBaseURl }}{{movie.poster_path}}\" width=\"300px\" alt=\"movie picture\"                     \n        (click)=\"openModalWithComponent(movie)\">\n      </div>\n      <p></p>\n    </div>\n</div>\n<br/>\n\n<hr/>\n\n<ng-template #template>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title pull-left\">Modal</h4>\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <app-movie-detail></app-movie-detail>\n  </div>  \n</ng-template>"
+module.exports = "<div class=\"row\">  \n    <div class=\"col-lg-12\">            \n      <input id=\"title\" class=\"form-control\" name=\"title\"\n            placeholder=\"Search movie here\"\n            [(ngModel)]=\"searchTerm\"\n            [typeahead]=\"titles\"\n            [typeaheadOptionsLimit]=\"10\">\n  </div>\n    \n    <br/>\n      <!-- <div class=\"col-lg-12\">                \n          <input class=\"form-control form-control-lg form-control-borderless\" type=\"search\" placeholder=\"Search movie here\" [(ngModel)]=\"searchTerm\">\n      </div>-->\n\n    </div>\n\n<hr/>\n\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let movie of moviesList | movieFilter:searchTerm\">\n      <div class=\"cursor-feature\">\n        <img src=\"{{imageBaseURl }}{{movie.poster_path}}\" width=\"300px\" alt=\"movie picture\"                     \n        (click)=\"openModalWithComponent(movie)\">\n      </div>\n      <p></p>\n    </div>\n</div>\n<br/>\n\n<hr/>\n"
 
 /***/ }),
 
@@ -484,7 +487,7 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.openModalWithComponent = function (movie) {
         var initialState = { title: movie.original_title };
         this.selectedMovie = movie;
-        this.dataserviceService.setData(this.selectedMovie);
+        this.dataserviceService.setData(this.selectedMovie, 'movie');
         this.modalRef = this.modalService.show(_modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_5__["ModalComponentComponent"], { initialState: initialState });
     };
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -523,8 +526,11 @@ var DataserviceService = /** @class */ (function () {
     function DataserviceService() {
         this.data = {};
     }
-    DataserviceService.prototype.setData = function (selectedMovie) {
-        this.data = selectedMovie;
+    DataserviceService.prototype.setData = function (selectedItem, type) {
+        this.data = {
+            item: selectedItem,
+            type: type
+        };
     };
     DataserviceService.prototype.getData = function () {
         return this.data;
@@ -560,7 +566,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Movie Name : {{title}}</h4>\n            <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\n                <span aria-hidden=\"true\">&times;</span>\n            </button>\n    </div>\n    <div class=\"modal-body\">\n        <app-movie-detail></app-movie-detail>\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"bsModalRef.hide()\">Close</button>\n    </div>\n</div>"
+module.exports = "<div>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Movie Name : {{title}}</h4>\n            <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"closeModal()\">\n                <span aria-hidden=\"true\">&times;</span>\n            </button>\n    </div>\n    <div *ngIf=\"type === 'movie'\" class=\"modal-body\">\n        <app-movie-detail></app-movie-detail>\n    </div>\n    <div *ngIf=\"type === 'people'\" class=\"modal-body\">\n        <app-people-detail></app-people-detail>\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Close</button>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -576,12 +582,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalComponentComponent", function() { return ModalComponentComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _dataservice_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dataservice.service */ "./src/app/dataservice.service.ts");
+
+
 
 
 var ModalComponentComponent = /** @class */ (function () {
-    function ModalComponentComponent() {
+    function ModalComponentComponent(bsModalRef, dataserviceService) {
+        this.bsModalRef = bsModalRef;
+        this.dataserviceService = dataserviceService;
     }
     ModalComponentComponent.prototype.ngOnInit = function () {
+        this.getSelectedType();
+    };
+    ModalComponentComponent.prototype.closeModal = function () {
+        this.bsModalRef.hide();
+    };
+    ModalComponentComponent.prototype.getSelectedType = function () {
+        this.data = this.dataserviceService.getData();
+        this.type = this.data.type;
     };
     ModalComponentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -589,7 +609,8 @@ var ModalComponentComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./modal-component.component.html */ "./src/app/modal-component/modal-component.component.html"),
             styles: [__webpack_require__(/*! ./modal-component.component.css */ "./src/app/modal-component/modal-component.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalRef"],
+            _dataservice_service__WEBPACK_IMPORTED_MODULE_3__["DataserviceService"]])
     ], ModalComponentComponent);
     return ModalComponentComponent;
 }());
@@ -646,7 +667,8 @@ var MovieDetailComponent = /** @class */ (function () {
     };
     // @Input() movie: Movie; 
     MovieDetailComponent.prototype.getSelectedMovie = function () {
-        this.movie = this.dataserviceService.getData();
+        this.data = this.dataserviceService.getData();
+        this.movie = this.data.item;
     };
     MovieDetailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -763,6 +785,72 @@ var MovieServiceService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/people-detail/people-detail.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/people-detail/people-detail.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Blb3BsZS1kZXRhaWwvcGVvcGxlLWRldGFpbC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/people-detail/people-detail.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/people-detail/people-detail.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "  <div *ngIf=\"people\">\r\n      <div class=\"row\">\r\n        <div class=\"col-lg-6\">\r\n          <img src=\"{{imageBaseURl}}{{people.profile_path}}\" width=\"250px\" alt=\"movie picture\">\r\n        </div>\r\n        <div class=\"col-lg-6\">\r\n          <h3> {{people.name}}</h3>  \r\n          <div *ngFor=\"let known of people.known_for\">\r\n                <p><b>Known</b> :{{known.media_type}}</p>\r\n                <p><b>Original Language</b> :{{known.original_language}}</p>\r\n                <p><b>Original Title</b> :{{known.original_title}}</p>\r\n                <p> <b>Overview</b> : {{known.overview}}</p>\r\n                <p> <b>Realse Date</b> : {{known.release_date}}</p>\r\n                <p><b>Rating</b> : <rating [(ngModel)]=\"known.vote_average\" [max]=\"10\" [readonly]=\"isReadonly\"></rating></p>        \r\n                <hr/>\r\n          </div>\r\n        </div>\r\n      </div>      \r\n    </div>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/people-detail/people-detail.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/people-detail/people-detail.component.ts ***!
+  \**********************************************************/
+/*! exports provided: PeopleDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeopleDetailComponent", function() { return PeopleDetailComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _dataservice_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dataservice.service */ "./src/app/dataservice.service.ts");
+
+
+
+var PeopleDetailComponent = /** @class */ (function () {
+    function PeopleDetailComponent(dataserviceService) {
+        this.dataserviceService = dataserviceService;
+        this.imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
+    }
+    PeopleDetailComponent.prototype.ngOnInit = function () {
+        this.getSelectedPeople();
+    };
+    // @Input() movie: Movie; 
+    PeopleDetailComponent.prototype.getSelectedPeople = function () {
+        this.data = this.dataserviceService.getData();
+        this.people = this.data.item;
+    };
+    PeopleDetailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-people-detail',
+            template: __webpack_require__(/*! ./people-detail.component.html */ "./src/app/people-detail/people-detail.component.html"),
+            styles: [__webpack_require__(/*! ./people-detail.component.css */ "./src/app/people-detail/people-detail.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_dataservice_service__WEBPACK_IMPORTED_MODULE_2__["DataserviceService"]])
+    ], PeopleDetailComponent);
+    return PeopleDetailComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/people/people.component.css":
 /*!*********************************************!*\
   !*** ./src/app/people/people.component.css ***!
@@ -770,7 +858,7 @@ var MovieServiceService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Blb3BsZS9wZW9wbGUuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = ".cursor-feature{\r\n    cursor: pointer;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGVvcGxlL3Blb3BsZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZUFBZTtBQUNuQiIsImZpbGUiOiJzcmMvYXBwL3Blb3BsZS9wZW9wbGUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jdXJzb3ItZmVhdHVyZXtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -781,7 +869,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let people of peopleList\">      \n      <div class=\"card\">\n        <div *ngIf=\"people.profile_path\">\n          <img src=\"{{imageBaseURl}}{{people.profile_path}}\" width=\"300px\" height=\"350px\" alt=\"profile\">\n        </div>\n        <div *ngIf=\"people.profile_path == null\">\n          <img src=\"../../assets/img/download.png\" width=\"300px\" height=\"350px\" alt=\"profile\">\n        </div>\n        \n        <p><b>{{people.name}}</b></p> \n\n     <!--   <p *ngFor=\"let known of people.known_for\">\n            <span>{{known.original_tile}}</span>\n        </p>-->\n\n      </div>\n      <br/>\n    </div>\n</div>\n<br/>\n\n<hr/>\n\n<div class=\"row\">\n  <div class=\"col-xs-12 col-12\">\n    <pagination [totalItems]=\"100\" [(ngModel)]=\"currentPage\" (pageChanged)=\"getPeopleList($event)\"></pagination>\n  </div>\n</div>\n"
+module.exports = "\n<div class=\"row\">\n    <div class=\"col-lg-3\" *ngFor=\"let people of peopleList\">      \n      <div class=\"card\">\n        <div *ngIf=\"people.profile_path\" class=\"cursor-feature\">\n          <img src=\"{{imageBaseURl}}{{people.profile_path}}\" width=\"300px\" height=\"350px\" alt=\"profile\"\n          (click)=\"openModalWithComponent(people)\">\n        </div>\n        <div *ngIf=\"people.profile_path == null\" class=\"cursor-feature\">\n          <img src=\"../../assets/img/download.png\" width=\"300px\" height=\"350px\" alt=\"profile\"  \n          (click)=\"openModalWithComponent(null)\">\n        </div>\n        \n        <p><b>{{people.name}}</b></p> \n\n     <!--   <p *ngFor=\"let known of people.known_for\">\n            <span>{{known.original_tile}}</span>\n        </p>-->\n\n      </div>\n      <br/>\n    </div>\n</div>\n<br/>\n\n<hr/>\n\n<div class=\"row\">\n  <div class=\"col-xs-12 col-12\">\n    <pagination [totalItems]=\"100\" [(ngModel)]=\"currentPage\" (pageChanged)=\"getPeopleList($event)\"></pagination>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -799,14 +887,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _movie_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../movie-service.service */ "./src/app/movie-service.service.ts");
 /* harmony import */ var ngx_ui_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-ui-loader */ "./node_modules/ngx-ui-loader/fesm5/ngx-ui-loader.js");
+/* harmony import */ var ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-bootstrap/modal */ "./node_modules/ngx-bootstrap/modal/fesm5/ngx-bootstrap-modal.js");
+/* harmony import */ var _modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../modal-component/modal-component.component */ "./src/app/modal-component/modal-component.component.ts");
+/* harmony import */ var _dataservice_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../dataservice.service */ "./src/app/dataservice.service.ts");
+
+
+
 
 
 
 
 var PeopleComponent = /** @class */ (function () {
-    function PeopleComponent(movieServiceService, ngxLoader) {
+    function PeopleComponent(movieServiceService, ngxLoader, modalService, dataserviceService) {
         this.movieServiceService = movieServiceService;
         this.ngxLoader = ngxLoader;
+        this.modalService = modalService;
+        this.dataserviceService = dataserviceService;
         this.imageBaseURl = 'https://image.tmdb.org/t/p/w500/';
         this.currentPage = 1;
         this.smallnumPages = 0;
@@ -825,13 +921,23 @@ var PeopleComponent = /** @class */ (function () {
         }, function (error) { return console.log(error); });
     };
     ;
+    //modal
+    PeopleComponent.prototype.openModalWithComponent = function (people) {
+        var initialState = { title: people.name };
+        this.selectedPeople = people;
+        this.dataserviceService.setData(this.selectedPeople, 'people');
+        this.modalRef = this.modalService.show(_modal_component_modal_component_component__WEBPACK_IMPORTED_MODULE_5__["ModalComponentComponent"], { initialState: initialState });
+    };
     PeopleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-people',
             template: __webpack_require__(/*! ./people.component.html */ "./src/app/people/people.component.html"),
             styles: [__webpack_require__(/*! ./people.component.css */ "./src/app/people/people.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movie_service_service__WEBPACK_IMPORTED_MODULE_2__["MovieServiceService"], ngx_ui_loader__WEBPACK_IMPORTED_MODULE_3__["NgxUiLoaderService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_movie_service_service__WEBPACK_IMPORTED_MODULE_2__["MovieServiceService"],
+            ngx_ui_loader__WEBPACK_IMPORTED_MODULE_3__["NgxUiLoaderService"],
+            ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_4__["BsModalService"],
+            _dataservice_service__WEBPACK_IMPORTED_MODULE_6__["DataserviceService"]])
     ], PeopleComponent);
     return PeopleComponent;
 }());
